@@ -4314,16 +4314,37 @@ function showParentScreen() {
   $("#loginScreen").hidden = true;
   $("#parentScreen").hidden = false;
   $("#app").hidden = true;
+  // ضمان إخفاء عناصر اللوحة
+  const sidebar = $("#sidebar");
+  if (sidebar) sidebar.style.display = "none";
+  const topbar = $(".topbar");
+  if (topbar) topbar.style.display = "none";
+  const main = $(".main");
+  if (main) main.style.display = "none";
 }
 function showLoginScreen() {
   $("#loginScreen").hidden = false;
   $("#parentScreen").hidden = true;
   $("#app").hidden = true;
+  // ضمان إخفاء أي عناصر من اللوحة
+  const sidebar = $("#sidebar");
+  if (sidebar) sidebar.style.display = "none";
+  const topbar = $(".topbar");
+  if (topbar) topbar.style.display = "none";
+  const main = $(".main");
+  if (main) main.style.display = "none";
 }
 function showApp() {
   $("#loginScreen").hidden = true;
   $("#parentScreen").hidden = true;
   $("#app").hidden = false;
+  // إعادة إظهار عناصر اللوحة
+  const sidebar = $("#sidebar");
+  if (sidebar) sidebar.style.display = "";
+  const topbar = $(".topbar");
+  if (topbar) topbar.style.display = "";
+  const main = $(".main");
+  if (main) main.style.display = "";
 }
 
 async function saveParentCache(trackingNumber, name, data) {
