@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>نظام إدارة المدرسة</title>
+<link rel="manifest" href="manifest.json" />
+<link rel="stylesheet" href="style.css" />
+<meta name="theme-color" content="#0f766e" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230f766e'/%3E%3Ctext x='32' y='42' font-size='32' text-anchor='middle' fill='white' font-family='sans-serif'%3E%D9%85%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-badge">م</div>
+      <h1 id="loginSchoolName">نظام إدارة المدرسة</h1>
+      <p class="muted">تسجيل الدخول للمدير والمعلمين</p>
+    </div>
+    <form id="loginForm" autocomplete="on">
+      <label>البريد الإلكتروني أو اسم المستخدم
+        <input type="text" id="loginEmail" required autocomplete="username" />
+      </label>
+      <label>كلمة المرور
+        <input type="password" id="loginPassword" required autocomplete="current-password" />
+      </label>
+      <button type="submit" class="btn btn-primary btn-block">تسجيل الدخول</button>
+      <div id="loginError" class="error-msg" hidden></div>
+    </form>
+    <div class="login-footer">
+      <a href="?page=parent" id="parentLink">دخول أولياء الأمور</a>
+      <span style="margin:0 8px; color:var(--text-muted)">•</span>
+      <a href="#" id="loginThemeToggle">🌙 الوضع الليلي</a>
+    </div>
+  </div>
+</div>
+
+<div id="parentScreen" class="login-screen" hidden>
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-badge">م</div>
+      <h1 id="parentSchoolName">متابعة الطالب</h1>
+      <p class="muted">أدخل بيانات ابنك للدخول</p>
+    </div>
+    <form id="parentForm">
+      <label>اسم الطالب الكامل
+        <input type="text" id="parentStudentName" required />
+      </label>
+      <label>رقم المتابعة
+        <input type="text" id="parentTracking" required inputmode="numeric" />
+      </label>
+      <button type="submit" class="btn btn-primary btn-block">متابعة الطالب</button>
+      <div id="parentError" class="error-msg" hidden></div>
+    </form>
+    <div class="login-footer">
+      <a href="#" id="backToLogin">رجوع لتسجيل الدخول</a>
+    </div>
+  </div>
+</div>
+
+<div id="app" hidden>
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <img id="schoolLogo" alt="شعار المدرسة" hidden />
+      <div class="logo-badge small" id="schoolLogoFallback">م</div>
+      <div class="school-info">
+        <div id="sidebarSchoolName" class="school-name">المدرسة</div>
+        <div id="sidebarUserRole" class="muted small">مدير</div>
+      </div>
+    </div>
+    <nav id="navMenu" class="nav-menu"></nav>
+    <div class="sidebar-footer">
+      <div id="netIndicator" class="net-indicator">
+        <span class="dot"></span><span class="net-text">متصل</span>
+      </div>
+      <button id="logoutBtn" class="btn btn-ghost btn-block">تسجيل الخروج</button>
+    </div>
+  </aside>
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button id="menuToggle" class="icon-btn" aria-label="القائمة">☰</button>
+      <h2 id="pageTitle">الرئيسية</h2>
+      <div class="topbar-actions">
+        <button id="themeToggle" class="theme-toggle-btn" title="تبديل الوضع الليلي" aria-label="الوضع الليلي">🌙</button>
+        <span id="netIndicatorTop" class="net-pill online">🟢 متصل</span>
+      </div>
+    </header>
+
+    <section id="pageContent" class="page-content"></section>
+  </main>
+</div>
+
+<div id="modal" class="modal" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="modalTitle">عنوان</h3>
+      <button class="icon-btn" data-close>✕</button>
+    </div>
+    <div id="modalBody" class="modal-body"></div>
+    <div id="modalFooter" class="modal-footer"></div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast-container"></div>
+
+<div id="offlineBanner" class="offline-banner" hidden>
+  🔴 أنت تعمل الآن بدون اتصال. سيتم مزامنة التغييرات عند عودة الإنترنت.
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>
