@@ -1,6 +1,6 @@
-// supabase.js — عميل Supabase + كل عمليات السيرفر
+// supabase.js — عميل Supabase
 const SUPABASE_URL = "https://ectyuhiueznogwvgnefj.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_M09mgns32PNUKKIDGHkGbg_8413NkwXsb_publishable_M09mgns32PNUKKIDGHkGbg_8413NkwX";
+const SUPABASE_ANON_KEY = "sb_publishable_M09mgns32PNUKKIDGHkGbg_8413NkwX";
 
 let _client = null;
 function getClient() {
